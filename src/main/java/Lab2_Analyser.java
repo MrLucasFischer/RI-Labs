@@ -46,6 +46,7 @@ public class Lab2_Analyser extends Analyzer {
 
     /**
      * Builds an analyzer with the default stop words
+     *
      */
     public Lab2_Analyser() {
 
