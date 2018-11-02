@@ -18,10 +18,9 @@ public class Lab4_RetrievalModels extends Lab1_Baseline {
             float lambda = (float) (j - 1) / 10;
             Similarity similarity = new LMJelinekMercerSimilarity(lambda);
             Lab1_Baseline baseline = new Lab1_Baseline();
-//            baseline.openIndex(analyzer, similarity);   //creates an in-disk index
-//            baseline.indexDocuments();  //parses the documents and puts them in them index
-//            baseline.close();
             baseline.indexSearch(analyzer, similarity);
+            //No need to index the documents with this retrieval model
+            //because we're only interested in search time results, not indexing time results
         }
 
         List<Integer> mus = Arrays.asList(10, 100, 500, 1000, 5000);
@@ -29,10 +28,9 @@ public class Lab4_RetrievalModels extends Lab1_Baseline {
         for (int miu : mus) {
             Similarity similarity = new LMDirichletSimilarity(miu);
             Lab1_Baseline baseline = new Lab1_Baseline();
-//            baseline.openIndex(analyzer, similarity);   //creates an in-disk index
-//            baseline.indexDocuments();  //parses the documents and puts them in them index
-//            baseline.close();
             baseline.indexSearch(analyzer, similarity);
+            //No need to index the documents with this retrieval model
+            //because we're only interested in search time results, not indexing time results
         }
 
         List<Float> bs = Arrays.asList(0.0f, 0.25f, 0.5f, 0.75f, 1.0f);
@@ -42,10 +40,9 @@ public class Lab4_RetrievalModels extends Lab1_Baseline {
             for (float ik : k1s) {
                 Similarity similarity = new BM25Similarity(ik, ib);
                 Lab1_Baseline baseline = new Lab1_Baseline();
-//                baseline.openIndex(analyzer, similarity);   //creates an in-disk index
-//                baseline.indexDocuments();  //parses the documents and puts them in them index
-//                baseline.close();
                 baseline.indexSearch(analyzer, similarity);
+                //No need to index the documents with this retrieval model
+                //because we're only interested in search time results, not indexing time results
             }
         }
     }

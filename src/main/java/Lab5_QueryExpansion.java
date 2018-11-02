@@ -6,10 +6,7 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.FSDirectory;
@@ -21,6 +18,7 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Lab5_QueryExpansion extends Lab1_Baseline {
 
@@ -52,41 +50,25 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                     break;
                 }
 
-                Map<String, Integer> expansionTerms = getExpansionTerms(queryString, 0, 100, analyzer, similarity);
+                Map<String, Integer> negTerms = getExpansionTerms(queryString, 200, 220, analyzer, similarity, null);
 
-                List ntimes = new ArrayList();
-                List words = new ArrayList();
-                List temp_ntimes = new ArrayList();
+                List<Map.Entry<String, Integer>> top3Negative = getTopTerms(negTerms);
 
-                
-                for (Map.Entry<String, Integer> term: expansionTerms.entrySet()) {
-                    // This is the minimum frequency
-                    if (term.getValue() >= 20) {
-                        words.add(term.getKey());
-                        ntimes.add(term.getValue());
-                        temp_ntimes.add(term.getValue());
-                        System.out.println(term.getKey() + " -> " + term.getValue() + " times");
-                    }
-                }
+                Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, 3, analyzer, similarity, top3Negative);
 
+                List<Map.Entry<String, Integer>> top3Positive = getTopTerms(posTerms);
 
                 // Implement the query expansion by selecting terms from the expansionTerms
-                System.out.println("HERE");
-                Object maxVal = Collections.max(ntimes);
-                System.out.println(maxVal.toString());
-                System.out.println(ntimes.indexOf(maxVal));
-                //temp_ntimes = ntimes;
-                Collections.sort(temp_ntimes);
-                List<Integer> top3 = new ArrayList<Integer>(temp_ntimes.subList(temp_ntimes.size() -3,temp_ntimes.size()));
-                System.out.println(top3.toString());
-                int indexTop1 = ntimes.indexOf(top3.get(2));
-                int indexTop2 = ntimes.indexOf(top3.get(1));
-                int indexTop3 = ntimes.indexOf(top3.get(0));
-                System.out.println(words.get(indexTop1));
-                System.out.println(words.get(indexTop2));
-                System.out.println(words.get(indexTop3));
+                String first = "";
+                String second = "";
+                String third = "";
+                if(top3Positive.size() == 3){
+                    first = top3Positive.get(0).getKey();
+                    second = top3Positive.get(1).getKey();
+                    third = top3Positive.get(2).getKey();
+                }
 
-                queryString = queryString + " " + words.get(indexTop3).toString() + " " + words.get(indexTop2).toString() + " " + words.get(indexTop1);
+                queryString = queryString + " " + first + " " + second + " " + third; //Expanded query
 
                 System.out.println(queryString);
 
@@ -106,7 +88,7 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
     }
 
 
-    public Map<String, Integer>  getExpansionTerms(String queryString, int startDoc, int numExpDocs, Analyzer analyzer, Similarity similarity) {
+    public Map<String, Integer>  getExpansionTerms(String queryString, int startDoc, int numExpDocs, Analyzer analyzer, Similarity similarity, List<Map.Entry<String, Integer>> top3Negative) {
 
         Map<String, Integer> topTerms = new HashMap<String, Integer>();
 
@@ -147,10 +129,15 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                     while (stream.incrementToken()) {
                         String term = termAtt.toString();
                         Integer termCount = topTerms.get(term);
-                        if (termCount == null)
-                            topTerms.put(term, 1);
-                        else
-                            topTerms.put(term, ++termCount);
+                        //Filter terms that are in the negative feedback documents
+                        if(top3Negative == null || (!top3Negative.get(0).getKey().equals(term) &&
+                                !top3Negative.get(1).getKey().equals(term) &&
+                                !top3Negative.get(2).getKey().equals(term))) {
+                            if (termCount == null)
+                                topTerms.put(term, 1);
+                            else
+                                topTerms.put(term, ++termCount);
+                        }
                     }
 
                     stream.end();
@@ -164,6 +151,34 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
         System.out.println(topTerms.size());
         return topTerms;
     }
+
+    private List<Map.Entry<String, Integer>> getTopTerms(Map<String, Integer> terms) {
+        List<Map.Entry<String, Integer>> top3Entries = new ArrayList();
+
+        for (Map.Entry<String, Integer> term: terms.entrySet()) {
+            // This is the minimum frequency
+            if (term.getValue() >= 1) {
+                if(top3Entries.size() < 3){
+                    top3Entries.add(term);
+                } else {
+                    if(term.getValue() >= top3Entries.get(0).getValue()){
+                        top3Entries.set(2, top3Entries.get(1));
+                        top3Entries.set(1, top3Entries.get(0));
+                        top3Entries.set(0, term);
+                    } else if(term.getValue() >= top3Entries.get(1).getValue()){
+                        top3Entries.set(2, top3Entries.get(1));
+                        top3Entries.set(1, term);
+                    } else if(term.getValue() >= top3Entries.get(2).getValue()){
+                        top3Entries.set(2, term);
+                    }
+                }
+
+                System.out.println(term.getKey() + " -> " + term.getValue() + " times");
+            }
+        }
+        return top3Entries;
+    }
+
 
     public static void main(String[] args) {
 

@@ -170,21 +170,21 @@ public class Lab1_Baseline {
                 doc.add(new LongPoint("CreationDate", creationDate.getTime()));
 
                 // Add decay weight field
-                //System.out.println("??????????????????????????????????????????????");
+
                 LocalDate docDate = creationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+                //Calculate the number of days this document has
                 Date docDate1 = Date.from(docDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 Date now = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
                 long diff = now.getTime() - docDate1.getTime();
                 int totalDaysElapsed = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 
-                // Calculation of total elapsed number of days ends here
-                System.out.println(totalDaysElapsed);
-                //double decayFactor = 1.0 / Math.pow(2.0, totalDaysElapsed);
+                // DECAY
+                // Implementation of the decay function
                 double decayFactor = 1.0 / Math.pow((1.0 + (1.0/(float)totalDaysElapsed)), (float)totalDaysElapsed);
 
                 // DECAY
-                //doc.add(new DoubleDocValuesField("decayField", decayFactor));
+                //doc.add(new DoubleDocValuesField("decayField", decayFactor)); //Add the decayField to the document
 
 
             } catch (ParseException e1) {
@@ -207,18 +207,12 @@ public class Lab1_Baseline {
 
             // Extract field Body
             String body = rawDocument.substring(end + 1);
-            // I added this line below
-            doc.add(new TextField("Body", body, Field.Store.YES)); // Does this mean terms are also stored?
-
-            // Add vector of terms for Body
-            // Create own FieldType to store Term Vectors
-
+            doc.add(new TextField("Body", body, Field.Store.YES));
 
             // ====================================================
             // Add the document to the index
             if (idx.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE) {
                 System.out.println("adding " + AnswerId);
-                // Don't know how to use this // float doc_boost = doc.getField(body).boost();
                 idx.addDocument(doc);
             } else {
                 idx.updateDocument(new Term("AnswerId", AnswerId.toString()), doc);
@@ -230,8 +224,7 @@ public class Lab1_Baseline {
         }
     }
 
-    // ====================================================
-    // Comment and refactor this method yourself
+
     public void indexSearch(Analyzer analyzer, Similarity similarity) {
 
         IndexReader reader = null;
@@ -273,9 +266,9 @@ public class Lab1_Baseline {
 
                     Query query;
 
-                    //Decay
+                    //DECAY
                     //ValueSource val = new DoubleFieldSource("decayField");
-                    //FunctionQuery myFuncQuery = new FunctionQuery(val);
+                    //FunctionQuery myFuncQuery = new FunctionQuery(val);   //Specify that the scoring should be influenced by "decayField"
 
                     try {
                         query = parser.parse(line);
@@ -285,7 +278,7 @@ public class Lab1_Baseline {
                     }
 
                     // DECAY
-//                    query = new CustomScoreQuery(query, myFuncQuery);
+//                    query = new CustomScoreQuery(query, myFuncQuery); //wrap query in CustomScoreQuery
 
                     TopDocs results = searcher.search(query, 100);
                     ScoreDoc[] hits = results.scoreDocs;
@@ -300,16 +293,13 @@ public class Lab1_Baseline {
                             out.println("QueryID\t\t\tQ0\t\t\tDocID\t\t\tRank\t\t\tScore\t\t\tRunID");
                         for (int j = 0; j < hits.length; j++) {
                             Document doc = searcher.doc(hits[j].doc);
-                            long ntotterms = searcher.collectionStatistics("Body").sumTotalTermFreq();
 
+                            //Obtain the average document length in the collection
+                            //long ntotterms = searcher.collectionStatistics("Body").sumTotalTermFreq();
                             //long numTotTermFreq = searcher.collectionStatistics("Body").sumTotalTermFreq();
-                            //System.out.println("$$$"+"DocID="+hits[j].doc+"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                            ////reader.getTermVector(hits[j].doc, "Body").iterator();
                             //System.out.println((float)ntotterms/(float)nDocsInReader);
                             //System.out.println(ntotterms);
-                            //System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                            //searcher.doc(hits[j].doc).getBinaryValue("Body") // not used
-//                            System.out.println(searcher.explain(query, hits[j].doc));
+
                             String answer = doc.get("Body");
                             Integer AnswerId = doc.getField("AnswerId").numericValue().intValue();
                             out.println(questionID + "\t\t\tQ0\t\t\t"+ AnswerId + "\t\t\t" + (j+1) + "\t\t\t" + hits[j].score + "\t\t\trun-1");
