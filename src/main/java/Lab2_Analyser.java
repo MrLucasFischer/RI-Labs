@@ -61,8 +61,8 @@ public class Lab2_Analyser extends Analyzer {
         // you can provide different TokenStremComponents according to the fieldName
 
 //        final StandardTokenizer src = new StandardTokenizer();
-        final WhitespaceTokenizer src = new WhitespaceTokenizer();
-//        final UAX29URLEmailTokenizer src = new UAX29URLEmailTokenizer();
+//        final WhitespaceTokenizer src = new WhitespaceTokenizer();
+        final UAX29URLEmailTokenizer src = new UAX29URLEmailTokenizer();
 
         TokenStream tok = null;
 

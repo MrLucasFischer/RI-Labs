@@ -11,10 +11,7 @@ import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.FSDirectory;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.StringReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.*;
@@ -32,48 +29,80 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
             searcher = new IndexSearcher(reader);
             searcher.setSimilarity(similarity);
 
-            BufferedReader in = null;
-            in = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
-
             QueryParser parser = new QueryParser("Body", analyzer);
-            while (true) {
-                System.out.println("Enter query: ");
 
-                String queryString = in.readLine();
+            try (BufferedReader br = new BufferedReader(new FileReader("./eval/queries.offline.txt"))) {
+                String queryString = br.readLine();
+                String simString = similarity.toString().replace("(", "_").replace(")", "_").replace(" ", "_").replace("=", "").replaceAll(",", "_");
+                String filename = "./eval/" + simString + ".txt";
+                File resultFile = new File(filename);
 
-                if (queryString == null || queryString.length() == -1) {
-                    break;
-                }
+                resultFile.delete();
+                resultFile.createNewFile();
+                int counter = 0;
 
-                queryString = queryString.trim();
-                if (queryString.length() == 0) {
-                    break;
-                }
+                while (queryString != null) {
+                    int questionID = Integer.parseInt(queryString.substring(0, queryString.indexOf(":")));
 
-                Map<String, Integer> negTerms = getExpansionTerms(queryString, 200, 220, analyzer, similarity, null);
+                    queryString = queryString.trim();
+                    queryString = queryString.substring(queryString.indexOf(":") + 1);
+                    if (queryString.length() == 0) {
+                        break;
+                    }
 
-                List<Map.Entry<String, Integer>> top3Negative = getTopTerms(negTerms);
+                    Map<String, Integer> negTerms = getExpansionTerms(queryString, 200, 220, analyzer, similarity, null);
 
-                Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, 3, analyzer, similarity, top3Negative);
+                    List<Map.Entry<String, Integer>> top3Negative = getTopTerms(negTerms);
 
-                List<Map.Entry<String, Integer>> top3Positive = getTopTerms(posTerms);
+                    Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, 3, analyzer, similarity, top3Negative);
 
-                // Implement the query expansion by selecting terms from the expansionTerms
-                String first = "";
-                String second = "";
-                String third = "";
-                if(top3Positive.size() == 3){
-                    first = top3Positive.get(0).getKey();
-                    second = top3Positive.get(1).getKey();
-                    third = top3Positive.get(2).getKey();
-                }
+                    List<Map.Entry<String, Integer>> top3Positive = getTopTerms(posTerms);
 
-                queryString = queryString + " " + first + " " + second + " " + third; //Expanded query
+                    // Implement the query expansion by selecting terms from the expansionTerms
+                    String first = "";
+                    String second = "";
+                    String third = "";
+                    if (top3Positive.size() == 3) {
+                        first = top3Positive.get(0).getKey();
+                        second = top3Positive.get(1).getKey();
+                        third = top3Positive.get(2).getKey();
+                    }
 
-                System.out.println(queryString);
+                    System.out.println("BEFORE EXPAND QUERY: "+ queryString);
+                    queryString = queryString + " " + first + " " + second + " " + third; //Expanded query
+                    System.out.println("EXPANDED QUERY: "+ queryString);
 
-                if (queryString.equals("")) {
-                    break;
+                    Query query;
+
+                    try {
+                        query = parser.parse(queryString); //Parsing the expanded query
+                    } catch (org.apache.lucene.queryparser.classic.ParseException e) {
+                        System.out.println("Error parsing query string.");
+                        continue;
+                    }
+
+                    TopDocs results = searcher.search(query, 100);
+                    ScoreDoc[] hits = results.scoreDocs;
+
+                    try (FileWriter fw = new FileWriter(resultFile, true);
+                         BufferedWriter bw = new BufferedWriter(fw);
+                         PrintWriter out = new PrintWriter(bw)) {
+                        if (counter == 0)
+                            out.println("QueryID\t\t\tQ0\t\t\tDocID\t\t\tRank\t\t\tScore\t\t\tRunID");
+                        for (int j = 0; j < hits.length; j++) {
+                            Document doc = searcher.doc(hits[j].doc);
+                            int AnswerId = doc.getField("AnswerId").numericValue().intValue();
+                            out.println(questionID + "\t\t\tQ0\t\t\t" + AnswerId + "\t\t\t" + (j + 1) + "\t\t\t" + hits[j].score + "\t\t\trun-1");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (queryString.equals("")) {
+                        break;
+                    }
+                    counter++;
+                    queryString = br.readLine();
                 }
             }
             reader.close();
@@ -88,7 +117,7 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
     }
 
 
-    public Map<String, Integer>  getExpansionTerms(String queryString, int startDoc, int numExpDocs, Analyzer analyzer, Similarity similarity, List<Map.Entry<String, Integer>> top3Negative) {
+    public Map<String, Integer> getExpansionTerms(String queryString, int startDoc, int numExpDocs, Analyzer analyzer, Similarity similarity, List<Map.Entry<String, Integer>> top3Negative) {
 
         Map<String, Integer> topTerms = new HashMap<String, Integer>();
 
@@ -106,19 +135,12 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
 
             ScoreDoc[] hits = results.scoreDocs;
 
-            System.out.println(" baseDoc + numExpDocs = "+(startDoc + numExpDocs));
-            System.out.println(" hits.length = "+hits.length);
-
-            long numTotalHits = results.totalHits;
-            System.out.println(numTotalHits + " total matching documents");
-
             for (int j = startDoc; j < hits.length; j++) {
                 Document doc = searcher.doc(hits[j].doc);
                 String answer = doc.get("Body");
                 Integer AnswerId = doc.getField("AnswerId").numericValue().intValue();
 
                 TokenStream stream = analyzer.tokenStream("field", new StringReader(answer));
-
                 // get the CharTermAttribute from the TokenStream
                 CharTermAttribute termAtt = stream.addAttribute(CharTermAttribute.class);
 
@@ -130,7 +152,7 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                         String term = termAtt.toString();
                         Integer termCount = topTerms.get(term);
                         //Filter terms that are in the negative feedback documents
-                        if(top3Negative == null || (!top3Negative.get(0).getKey().equals(term) &&
+                        if (top3Negative == null || (!top3Negative.get(0).getKey().equals(term) &&
                                 !top3Negative.get(1).getKey().equals(term) &&
                                 !top3Negative.get(2).getKey().equals(term))) {
                             if (termCount == null)
@@ -148,32 +170,34 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(topTerms.size());
+
         return topTerms;
     }
 
     private List<Map.Entry<String, Integer>> getTopTerms(Map<String, Integer> terms) {
-        List<Map.Entry<String, Integer>> top3Entries = new ArrayList();
+        Map<String, Integer> defaultValues = new HashMap();
+        defaultValues.put(" ", -1);
+        defaultValues.put("  ", -1);
+        defaultValues.put("   ", -1);
+        List<Map.Entry<String, Integer>> top3Entries = new ArrayList(defaultValues.entrySet());
 
-        for (Map.Entry<String, Integer> term: terms.entrySet()) {
+        for (Map.Entry<String, Integer> term : terms.entrySet()) {
             // This is the minimum frequency
             if (term.getValue() >= 1) {
-                if(top3Entries.size() < 3){
+                if (top3Entries.size() < 3) {
                     top3Entries.add(term);
                 } else {
-                    if(term.getValue() >= top3Entries.get(0).getValue()){
+                    if (term.getValue() >= top3Entries.get(0).getValue()) {
                         top3Entries.set(2, top3Entries.get(1));
                         top3Entries.set(1, top3Entries.get(0));
                         top3Entries.set(0, term);
-                    } else if(term.getValue() >= top3Entries.get(1).getValue()){
+                    } else if (term.getValue() >= top3Entries.get(1).getValue()) {
                         top3Entries.set(2, top3Entries.get(1));
                         top3Entries.set(1, term);
-                    } else if(term.getValue() >= top3Entries.get(2).getValue()){
+                    } else if (term.getValue() >= top3Entries.get(2).getValue()) {
                         top3Entries.set(2, term);
                     }
                 }
-
-                System.out.println(term.getKey() + " -> " + term.getValue() + " times");
             }
         }
         return top3Entries;
@@ -183,6 +207,7 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
     public static void main(String[] args) {
 
         Lab5_QueryExpansion baseline = new Lab5_QueryExpansion();
+
 
         Analyzer analyzer = new StandardAnalyzer();
         Similarity similarity = new ClassicSimilarity();
