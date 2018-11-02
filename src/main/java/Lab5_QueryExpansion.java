@@ -20,8 +20,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Lab5_QueryExpansion extends Lab1_Baseline {
 
@@ -53,15 +52,43 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                     break;
                 }
 
-                Map<String, Integer> expansionTerms = getExpansionTerms(queryString, 100, analyzer, similarity);
+                Map<String, Integer> expansionTerms = getExpansionTerms(queryString, 0, 100, analyzer, similarity);
 
+                List ntimes = new ArrayList();
+                List words = new ArrayList();
+                List temp_ntimes = new ArrayList();
+
+                
                 for (Map.Entry<String, Integer> term: expansionTerms.entrySet()) {
                     // This is the minimum frequency
-                    if (term.getValue() >= 20)
-                        System.out.println( term.getKey() + " -> " + term.getValue() + " times");
+                    if (term.getValue() >= 20) {
+                        words.add(term.getKey());
+                        ntimes.add(term.getValue());
+                        temp_ntimes.add(term.getValue());
+                        System.out.println(term.getKey() + " -> " + term.getValue() + " times");
+                    }
                 }
 
+
                 // Implement the query expansion by selecting terms from the expansionTerms
+                System.out.println("HERE");
+                Object maxVal = Collections.max(ntimes);
+                System.out.println(maxVal.toString());
+                System.out.println(ntimes.indexOf(maxVal));
+                //temp_ntimes = ntimes;
+                Collections.sort(temp_ntimes);
+                List<Integer> top3 = new ArrayList<Integer>(temp_ntimes.subList(temp_ntimes.size() -3,temp_ntimes.size()));
+                System.out.println(top3.toString());
+                int indexTop1 = ntimes.indexOf(top3.get(2));
+                int indexTop2 = ntimes.indexOf(top3.get(1));
+                int indexTop3 = ntimes.indexOf(top3.get(0));
+                System.out.println(words.get(indexTop1));
+                System.out.println(words.get(indexTop2));
+                System.out.println(words.get(indexTop3));
+
+                queryString = queryString + " " + words.get(indexTop3).toString() + " " + words.get(indexTop2).toString() + " " + words.get(indexTop1);
+
+                System.out.println(queryString);
 
                 if (queryString.equals("")) {
                     break;
@@ -79,7 +106,7 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
     }
 
 
-    public Map<String, Integer>  getExpansionTerms(String queryString, int numExpDocs, Analyzer analyzer, Similarity similarity) {
+    public Map<String, Integer>  getExpansionTerms(String queryString, int startDoc, int numExpDocs, Analyzer analyzer, Similarity similarity) {
 
         Map<String, Integer> topTerms = new HashMap<String, Integer>();
 
@@ -93,13 +120,17 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                 return null;
             }
 
-            TopDocs results = searcher.search(query, numExpDocs);
+            TopDocs results = searcher.search(query, startDoc + numExpDocs);
+
             ScoreDoc[] hits = results.scoreDocs;
+
+            System.out.println(" baseDoc + numExpDocs = "+(startDoc + numExpDocs));
+            System.out.println(" hits.length = "+hits.length);
 
             long numTotalHits = results.totalHits;
             System.out.println(numTotalHits + " total matching documents");
 
-            for (int j = 0; j < hits.length; j++) {
+            for (int j = startDoc; j < hits.length; j++) {
                 Document doc = searcher.doc(hits[j].doc);
                 String answer = doc.get("Body");
                 Integer AnswerId = doc.getField("AnswerId").numericValue().intValue();

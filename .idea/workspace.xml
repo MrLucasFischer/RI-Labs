@@ -3,31 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5764128a-62b5-4bb3-a9bc-cb33d00ed7b1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_ay.cfe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_ay.cfs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_ay.si" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_az.cfe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_az.cfs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_az.si" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_b0.cfe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_b0.cfs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_b0.si" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_b1.cfe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_b1.cfs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_b1.si" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/segments_n" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lab2_Analyser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab2_Analyser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab2_Analyser$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab2_Analyser$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab2_Analyser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab2_Analyser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab4_RetrievalModels.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab4_RetrievalModels.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stackoverflow-ri.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Lab5_QueryExpansion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab5_QueryExpansion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields$perFieldSimilarity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields$perFieldSimilarity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab7_SearchingMultipleFields.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab7_SearchingMultipleFields.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -91,14 +69,65 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1966493407">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gitignore" value="1" />
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="14" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+            <state relative-caret-position="64">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,13 +136,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
         </entry>
@@ -160,6 +186,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Lab2_Analyser.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" />
       </list>
     </option>
   </component>
@@ -170,11 +197,10 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="260" />
-    <option name="y" value="53" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="835" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -184,28 +210,37 @@
     <panes>
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="stackoverflow-ri" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stackoverflow-ri" type="462c0819:PsiDirectoryNode" />
+              <item name="RI-Labs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RI-Labs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="stackoverflow-ri" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stackoverflow-ri" type="462c0819:PsiDirectoryNode" />
+              <item name="RI-Labs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RI-Labs" type="462c0819:PsiDirectoryNode" />
+              <item name="eval" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RI-Labs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RI-Labs" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RI-Labs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RI-Labs" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="stackoverflow-ri" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stackoverflow-ri" type="462c0819:PsiDirectoryNode" />
+              <item name="RI-Labs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RI-Labs" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="stackoverflow-ri" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stackoverflow-ri" type="462c0819:PsiDirectoryNode" />
+              <item name="RI-Labs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RI-Labs" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -217,7 +252,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540388296394" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541157309024" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -233,7 +268,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Lab4_RetrievalModels">
+  <component name="RunManager" selected="Application.Lab5_QueryExpansion">
     <configuration name="Lab1_Baseline" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lab1_Baseline" />
       <module name="stackoverflow-ri" />
@@ -255,15 +290,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Lab5_QueryExpansion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Lab5_QueryExpansion" />
+      <module name="stackoverflow-ri" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Lab1_Baseline" />
       <item itemvalue="Application.Lab2_Analyser" />
       <item itemvalue="Application.Lab4_RetrievalModels" />
+      <item itemvalue="Application.Lab5_QueryExpansion" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Lab4_RetrievalModels" />
+        <item itemvalue="Application.Lab5_QueryExpansion" />
         <item itemvalue="Application.Lab1_Baseline" />
+        <item itemvalue="Application.Lab4_RetrievalModels" />
         <item itemvalue="Application.Lab2_Analyser" />
       </list>
     </recent_temporary>
@@ -339,10 +383,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="835" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19114584" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19384836" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -351,7 +395,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49947917" weight="0.25714287" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49947917" visible="true" weight="0.25706595" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -359,7 +403,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5005208" side_tool="true" weight="0.26734695" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32959184" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32839838" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -395,20 +439,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eval/Questions.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="24">
-          <caret line="1" column="1" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eval/queries.offline.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eval/Questions.csv" />
+    <entry file="file://$PROJECT_DIR$/eval/queries.offline.txt" />
     <entry file="file://$PROJECT_DIR$/eval/resultA2.txt" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar!/org/apache/lucene/search/TopDocs.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -431,20 +463,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eval/Answers.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-3041">
-          <caret line="105" column="83" selection-start-line="105" selection-start-column="83" selection-end-line="105" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eval/Answers.csv" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar!/org/apache/lucene/analysis/standard/StandardTokenizer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="984">
@@ -529,13 +548,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0.jar!/org/apache/lucene/search/similarities/LMJelinekMercerSimilarity.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
@@ -606,23 +618,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="55" column="29" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+        <state relative-caret-position="435">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
