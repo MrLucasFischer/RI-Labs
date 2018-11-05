@@ -50,28 +50,18 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                         break;
                     }
 
+                    int numberOfTerms = 5;
+                    int numberOfDocs = 5; //Using 5 because this is the best value for number of documents
                     Map<String, Integer> negTerms = getExpansionTerms(queryString, 200, 220, analyzer, similarity, null);
 
-                    List<Map.Entry<String, Integer>> top3Negative = getTopTerms(negTerms);
+                    List<Map.Entry<String, Integer>> topNegative = getTopTerms(negTerms, numberOfTerms);
 
-                    Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, 3, analyzer, similarity, top3Negative);
+                    Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, numberOfDocs, analyzer, similarity, topNegative); //for exe1
 
-                    List<Map.Entry<String, Integer>> top3Positive = getTopTerms(posTerms);
-
+                    List<Map.Entry<String, Integer>> topTerms = getTopTerms(posTerms, numberOfTerms);
                     // Implement the query expansion by selecting terms from the expansionTerms
-                    String first = "";
-                    String second = "";
-                    String third = "";
-                    if (top3Positive.size() == 3) {
-                        first = top3Positive.get(0).getKey();
-                        second = top3Positive.get(1).getKey();
-                        third = top3Positive.get(2).getKey();
-                    }
-
-                    System.out.println("BEFORE EXPAND QUERY: "+ queryString);
-                    queryString = queryString + " " + first + " " + second + " " + third; //Expanded query
-                    System.out.println("EXPANDED QUERY: "+ queryString);
-
+                    queryString = expandQuery(queryString, topTerms);
+                    System.out.println(queryString);
                     Query query;
 
                     try {
@@ -174,33 +164,18 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
         return topTerms;
     }
 
-    private List<Map.Entry<String, Integer>> getTopTerms(Map<String, Integer> terms) {
-        Map<String, Integer> defaultValues = new HashMap();
-        defaultValues.put(" ", -1);
-        defaultValues.put("  ", -1);
-        defaultValues.put("   ", -1);
-        List<Map.Entry<String, Integer>> top3Entries = new ArrayList(defaultValues.entrySet());
+    private List<Map.Entry<String, Integer>> getTopTerms(Map<String, Integer> terms, int numberOfTerms) {
+        return terms
+                .entrySet()
+                .stream()
+                .filter(entry -> !entry.getKey().startsWith("http://"))
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .limit(numberOfTerms)
+                .collect(Collectors.toList());
+    }
 
-        for (Map.Entry<String, Integer> term : terms.entrySet()) {
-            // This is the minimum frequency
-            if (term.getValue() >= 1) {
-                if (top3Entries.size() < 3) {
-                    top3Entries.add(term);
-                } else {
-                    if (term.getValue() >= top3Entries.get(0).getValue()) {
-                        top3Entries.set(2, top3Entries.get(1));
-                        top3Entries.set(1, top3Entries.get(0));
-                        top3Entries.set(0, term);
-                    } else if (term.getValue() >= top3Entries.get(1).getValue()) {
-                        top3Entries.set(2, top3Entries.get(1));
-                        top3Entries.set(1, term);
-                    } else if (term.getValue() >= top3Entries.get(2).getValue()) {
-                        top3Entries.set(2, term);
-                    }
-                }
-            }
-        }
-        return top3Entries;
+    public String expandQuery(String query, List<Map.Entry<String, Integer>> topTerms) {
+        return query + String.join(" ", topTerms.stream().map(Map.Entry::getKey).collect(Collectors.toList()));
     }
 
 

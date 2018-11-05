@@ -16,8 +16,7 @@ public class Lab4_RetrievalModels extends Lab1_Baseline {
         // Para gerar os ficheiros com as metricas do LMJelinekMercer com
 //        for (int j = 1; j < 12; j++) {
 //            float lambda = (float) (j - 1) / 10;
-            Similarity similarity = new LMJelinekMercerSimilarity(0.9f);
-            //TODO THIS IS TEMPORARY, SEE WHICH SIMILARITY WAS BEST AND WHAT WERE THE BEST PARAMS FOR IT
+            Similarity similarity = new LMJelinekMercerSimilarity(0.9f); //WE used this value because it has the best p10 and MAP
             Lab5_QueryExpansion baseline = new Lab5_QueryExpansion();
             baseline.indexSearchQE(analyzer, similarity);
             //Lab1_Baseline baseline = new Lab1_Baseline();
