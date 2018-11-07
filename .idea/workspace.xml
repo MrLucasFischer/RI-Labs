@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5764128a-62b5-4bb3-a9bc-cb33d00ed7b1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab2_Analyser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab2_Analyser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab4_RetrievalModels.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab4_RetrievalModels.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Lab5_QueryExpansion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab5_QueryExpansion.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -25,7 +21,7 @@
     <session id="-898028723">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="38" />
+          <entry key="project.closed" value="41" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="4" />
           <entry key="project.open.time.11" value="1" />
@@ -34,43 +30,43 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="5" />
           <entry key="project.open.time.7" value="9" />
-          <entry key="project.open.time.8" value="12" />
-          <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="39" />
+          <entry key="project.open.time.8" value="14" />
+          <entry key="project.open.time.9" value="5" />
+          <entry key="project.opened" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="class" value="3" />
           <entry key="gitignore" value="78" />
-          <entry key="java" value="5980" />
-          <entry key="txt" value="198" />
+          <entry key="java" value="7392" />
+          <entry key="txt" value="236" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="3" />
-          <entry key="JAVA" value="5980" />
-          <entry key="PLAIN_TEXT" value="276" />
+          <entry key="JAVA" value="7392" />
+          <entry key="PLAIN_TEXT" value="314" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="40" />
+          <entry key="class" value="43" />
           <entry key="csv" value="6" />
           <entry key="gitignore" value="3" />
-          <entry key="java" value="25" />
-          <entry key="txt" value="11" />
+          <entry key="java" value="26" />
+          <entry key="txt" value="12" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="40" />
-          <entry key="JAVA" value="25" />
-          <entry key="PLAIN_TEXT" value="20" />
+          <entry key="CLASS" value="43" />
+          <entry key="JAVA" value="26" />
+          <entry key="PLAIN_TEXT" value="21" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -111,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="24" column="52" lean-forward="true" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
+            <state relative-caret-position="288">
+              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,8 +119,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+            <state relative-caret-position="215">
+              <caret line="196" column="52" selection-start-line="196" selection-start-column="52" selection-end-line="196" selection-end-column="52" />
+              <folding>
+                <element signature="e#7895#7896#0" expanded="true" />
+                <element signature="e#7951#7952#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Integer.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4632">
+              <caret line="204" selection-start-line="204" selection-end-line="204" />
             </state>
           </provider>
         </entry>
@@ -158,6 +167,7 @@
       <find>decay</find>
       <find>getTopTer</find>
       <find>System</find>
+      <find>#</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,6 +183,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Lab2_Analyser.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" />
+        <option value="$PROJECT_DIR$/eval/queries.offline.txt" />
         <option value="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" />
       </list>
     </option>
@@ -196,6 +207,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,13 +225,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541428477086" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541620250796" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -234,7 +245,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Lab4_RetrievalModels">
+  <component name="RunManager" selected="Application.Lab5_QueryExpansion">
     <configuration name="Lab1_Baseline" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Lab1_Baseline" />
       <module name="stackoverflow-ri" />
@@ -271,8 +282,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Lab4_RetrievalModels" />
         <item itemvalue="Application.Lab5_QueryExpansion" />
+        <item itemvalue="Application.Lab4_RetrievalModels" />
         <item itemvalue="Application.Lab1_Baseline" />
         <item itemvalue="Application.Lab2_Analyser" />
       </list>
@@ -359,14 +370,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541172228586</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Major updates for lab5">
+      <created>1541428498796</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1541428498796</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14247599" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14727855" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -403,7 +421,8 @@
     <MESSAGE value="test commit" />
     <MESSAGE value="lab 5 update" />
     <MESSAGE value="implemented first pseudo-relevance feedback test (subtract posTerms - negTerms)" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented first pseudo-relevance feedback test (subtract posTerms - negTerms)" />
+    <MESSAGE value="Major updates for lab5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Major updates for lab5" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/eval/resultFile.txt" />
@@ -610,9 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5208">
           <caret line="242" column="32" selection-start-line="242" selection-start-column="32" selection-end-line="242" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -630,27 +646,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/List.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-queryparser/7.4.0/lucene-queryparser-7.4.0.jar!/org/apache/lucene/queryparser/classic/QueryParserBase.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="92" column="25" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/eval/queries.offline.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="2" />
+        <state relative-caret-position="456">
+          <caret line="25" column="39" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="24" column="52" lean-forward="true" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
+        <state relative-caret-position="288">
+          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Integer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4632">
+          <caret line="204" selection-start-line="204" selection-end-line="204" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+        <state relative-caret-position="215">
+          <caret line="196" column="52" selection-start-line="196" selection-start-column="52" selection-end-line="196" selection-end-column="52" />
+          <folding>
+            <element signature="e#7895#7896#0" expanded="true" />
+            <element signature="e#7951#7952#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

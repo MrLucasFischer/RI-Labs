@@ -12,8 +12,11 @@ import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.FSDirectory;
 
 import java.io.*;
+import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,9 +61,14 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
 
                     Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, numberOfDocs, analyzer, similarity, topNegative); //for exe1
 
-                    List<Map.Entry<String, Integer>> topTerms = getTopTerms(posTerms, numberOfTerms);
+                    List<Map.Entry<String, Integer>> topTermsAux = getTopTerms(posTerms, numberOfTerms);
+                    List<String> topTerms = topTermsAux.stream().map(Map.Entry::getKey).collect(Collectors.toList()); //Convert key, value to just key
                     // Implement the query expansion by selecting terms from the expansionTerms
+
+                    topTerms = weightQuery(queryString, topTerms,0.3); //Get a new list of keys that are weighted
+                    System.out.println(topTerms);
                     queryString = expandQuery(queryString, topTerms);
+
                     System.out.println(queryString);
                     Query query;
 
@@ -174,10 +182,24 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                 .collect(Collectors.toList());
     }
 
-    public String expandQuery(String query, List<Map.Entry<String, Integer>> topTerms) {
-        return query + String.join(" ", topTerms.stream().map(Map.Entry::getKey).collect(Collectors.toList()));
+    public String expandQuery(String query, List<String> topTerms) {
+        return query + String.join(" ", topTerms);
     }
 
+    public List weightQuery (String query, List<String> topTerms, double expansionPercentage) {
+        int numberOfExpansionTerms = topTerms.size();
+        int numberOfOriginalTerms = query
+                .replace("?", " ")
+                .replace(".", " ")
+                .replace("\"\"", "")
+                .replace("(", " ")
+                .replace(")", " ")
+                .replace("  ", " ").split(" ").length - numberOfExpansionTerms;
+        DecimalFormat df = new DecimalFormat("#.###");
+        df.setRoundingMode(RoundingMode.CEILING);
+        double expansionWeight = Math.round(((expansionPercentage * numberOfExpansionTerms) / (numberOfExpansionTerms * (1 - expansionPercentage))) * 100)/ 100;
+        return topTerms.stream().map(term -> term +"^"+expansionWeight).collect(Collectors.toList());
+    }
 
     public static void main(String[] args) {
 
