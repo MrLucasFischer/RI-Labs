@@ -66,9 +66,8 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                     // Implement the query expansion by selecting terms from the expansionTerms
 
                     topTerms = weightQuery(queryString, topTerms,0.3); //Get a new list of keys that are weighted
-                    System.out.println(topTerms);
-                    queryString = expandQuery(queryString, topTerms);
 
+                    queryString = expandQuery(queryString, topTerms);
                     System.out.println(queryString);
                     Query query;
 
@@ -115,7 +114,7 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
     }
 
 
-    public Map<String, Integer> getExpansionTerms(String queryString, int startDoc, int numExpDocs, Analyzer analyzer, Similarity similarity, List<Map.Entry<String, Integer>> top3Negative) {
+    public Map<String, Integer> getExpansionTerms(String queryString, int startDoc, int numExpDocs, Analyzer analyzer, Similarity similarity, List<Map.Entry<String, Integer>> topNegatives) {
 
         Map<String, Integer> topTerms = new HashMap<String, Integer>();
 
@@ -150,9 +149,8 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                         String term = termAtt.toString();
                         Integer termCount = topTerms.get(term);
                         //Filter terms that are in the negative feedback documents
-                        if (top3Negative == null || (!top3Negative.get(0).getKey().equals(term) &&
-                                !top3Negative.get(1).getKey().equals(term) &&
-                                !top3Negative.get(2).getKey().equals(term))) {
+
+                        if (topNegatives == null || !topNegatives.stream().map(Map.Entry::getKey).collect(Collectors.toList()).contains(term)) {
                             if (termCount == null)
                                 topTerms.put(term, 1);
                             else
@@ -194,11 +192,13 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                 .replace("\"\"", "")
                 .replace("(", " ")
                 .replace(")", " ")
-                .replace("  ", " ").split(" ").length - numberOfExpansionTerms;
-        DecimalFormat df = new DecimalFormat("#.###");
-        df.setRoundingMode(RoundingMode.CEILING);
-        double expansionWeight = Math.round(((expansionPercentage * numberOfExpansionTerms) / (numberOfExpansionTerms * (1 - expansionPercentage))) * 100)/ 100;
-        return topTerms.stream().map(term -> term +"^"+expansionWeight).collect(Collectors.toList());
+                .replace("  ", " ").split(" ").length;
+
+        double expansionWeight = ((double) Math.round(((expansionPercentage * numberOfOriginalTerms) / (numberOfExpansionTerms * (1 - expansionPercentage))) * 100))/ 100.0;
+        List<String> listToReturn =topTerms.stream().map(term -> term +"^"+expansionWeight).collect(Collectors.toList());
+        if(!listToReturn.isEmpty())
+            listToReturn.set(0, " "+ listToReturn.get(0)); //Adding a space before the first expansion term
+        return listToReturn;
     }
 
     public static void main(String[] args) {

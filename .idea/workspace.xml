@@ -21,10 +21,10 @@
     <session id="-898028723">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="41" />
+          <entry key="project.closed" value="42" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="4" />
-          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
@@ -32,23 +32,23 @@
           <entry key="project.open.time.7" value="9" />
           <entry key="project.open.time.8" value="14" />
           <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="42" />
+          <entry key="project.opened" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="class" value="3" />
           <entry key="gitignore" value="78" />
-          <entry key="java" value="7392" />
-          <entry key="txt" value="236" />
+          <entry key="java" value="7728" />
+          <entry key="txt" value="316" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="3" />
-          <entry key="JAVA" value="7392" />
-          <entry key="PLAIN_TEXT" value="314" />
+          <entry key="JAVA" value="7728" />
+          <entry key="PLAIN_TEXT" value="394" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -58,7 +58,7 @@
           <entry key="csv" value="6" />
           <entry key="gitignore" value="3" />
           <entry key="java" value="26" />
-          <entry key="txt" value="12" />
+          <entry key="txt" value="13" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
@@ -66,7 +66,7 @@
         <counts>
           <entry key="CLASS" value="43" />
           <entry key="JAVA" value="26" />
-          <entry key="PLAIN_TEXT" value="21" />
+          <entry key="PLAIN_TEXT" value="22" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -119,12 +119,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="196" column="52" selection-start-line="196" selection-start-column="52" selection-end-line="196" selection-end-column="52" />
-              <folding>
-                <element signature="e#7895#7896#0" expanded="true" />
-                <element signature="e#7951#7952#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="267">
+              <caret line="187" column="53" selection-start-line="187" selection-start-column="53" selection-end-line="187" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -168,6 +164,7 @@
       <find>getTopTer</find>
       <find>System</find>
       <find>#</find>
+      <find>rr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,8 +204,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -225,11 +222,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541620250796" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541939608379" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -377,14 +374,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541428498796</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Working on weighting terms, somethings wrong">
+      <created>1541620304180</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1541620304180</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14727855" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14887941" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -422,7 +426,8 @@
     <MESSAGE value="lab 5 update" />
     <MESSAGE value="implemented first pseudo-relevance feedback test (subtract posTerms - negTerms)" />
     <MESSAGE value="Major updates for lab5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major updates for lab5" />
+    <MESSAGE value="Working on weighting terms, somethings wrong" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on weighting terms, somethings wrong" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/eval/resultFile.txt" />
@@ -660,13 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eval/queries.offline.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -684,14 +682,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/eval/queries.offline.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="196" column="52" selection-start-line="196" selection-start-column="52" selection-end-line="196" selection-end-column="52" />
-          <folding>
-            <element signature="e#7895#7896#0" expanded="true" />
-            <element signature="e#7951#7952#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="267">
+          <caret line="187" column="53" selection-start-line="187" selection-start-column="53" selection-end-line="187" selection-end-column="53" />
         </state>
       </provider>
     </entry>
