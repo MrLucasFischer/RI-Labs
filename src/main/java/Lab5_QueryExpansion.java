@@ -53,22 +53,26 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                         break;
                     }
 
-                    int numberOfTerms = 5;
-                    int numberOfDocs = 5; //Using 5 because this is the best value for number of documents
+                    int numberOfTerms = 3; //Exercise 2
+                    int numberOfDocs = 10; //Exercise 1
+
+                    //Exercise 4
                     Map<String, Integer> negTerms = getExpansionTerms(queryString, 200, 220, analyzer, similarity, null);
 
                     List<Map.Entry<String, Integer>> topNegative = getTopTerms(negTerms, numberOfTerms);
 
-                    Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, numberOfDocs, analyzer, similarity, topNegative); //for exe1
+                    Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, numberOfDocs, analyzer, similarity, topNegative);
 
                     List<Map.Entry<String, Integer>> topTermsAux = getTopTerms(posTerms, numberOfTerms);
                     List<String> topTerms = topTermsAux.stream().map(Map.Entry::getKey).collect(Collectors.toList()); //Convert key, value to just key
+                    if(!topTerms.isEmpty())
+                        topTerms.set(0, " "+topTerms.get(0));
                     // Implement the query expansion by selecting terms from the expansionTerms
 
-                    topTerms = weightQuery(queryString, topTerms,0.3); //Get a new list of keys that are weighted
+//                    Exercise 3
+                    topTerms = weightQuery(queryString, topTerms,0.5); //Get a new list of keys that are weighted
 
                     queryString = expandQuery(queryString, topTerms);
-                    System.out.println(queryString);
                     Query query;
 
                     try {
@@ -149,8 +153,8 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                         String term = termAtt.toString();
                         Integer termCount = topTerms.get(term);
                         //Filter terms that are in the negative feedback documents
-
-                        if (topNegatives == null || !topNegatives.stream().map(Map.Entry::getKey).collect(Collectors.toList()).contains(term)) {
+                        if (!term.equals("p") && (topNegatives == null ||
+                                !topNegatives.stream().map(Map.Entry::getKey).collect(Collectors.toList()).contains(term))) {
                             if (termCount == null)
                                 topTerms.put(term, 1);
                             else
@@ -196,8 +200,6 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
 
         double expansionWeight = ((double) Math.round(((expansionPercentage * numberOfOriginalTerms) / (numberOfExpansionTerms * (1 - expansionPercentage))) * 100))/ 100.0;
         List<String> listToReturn =topTerms.stream().map(term -> term +"^"+expansionWeight).collect(Collectors.toList());
-        if(!listToReturn.isEmpty())
-            listToReturn.set(0, " "+ listToReturn.get(0)); //Adding a space before the first expansion term
         return listToReturn;
     }
 
