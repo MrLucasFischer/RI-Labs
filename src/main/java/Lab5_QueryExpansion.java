@@ -65,12 +65,16 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
 
                     List<Map.Entry<String, Integer>> topTermsAux = getTopTerms(posTerms, numberOfTerms);
                     List<String> topTerms = topTermsAux.stream().map(Map.Entry::getKey).collect(Collectors.toList()); //Convert key, value to just key
-                    if(!topTerms.isEmpty())
-                        topTerms.set(0, " "+topTerms.get(0));
+                    if (!topTerms.isEmpty())
+                        topTerms.set(0, " " + topTerms.get(0));
                     // Implement the query expansion by selecting terms from the expansionTerms
 
+//                    queryString = removeNegativeTerms(queryString, topNegative.stream().map(Map.Entry::getKey).collect(Collectors.toList()));
+
 //                    Exercise 3
-                    topTerms = weightQuery(queryString, topTerms,0.5); //Get a new list of keys that are weighted
+                    topTerms = weightQuery(queryString, topTerms, 0.5); //Get a new list of keys that are weighted
+
+                    //Exercise 4
 
                     queryString = expandQuery(queryString, topTerms);
                     Query query;
@@ -184,11 +188,11 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                 .collect(Collectors.toList());
     }
 
-    public String expandQuery(String query, List<String> topTerms) {
+    private String expandQuery(String query, List<String> topTerms) {
         return query + String.join(" ", topTerms);
     }
 
-    public List weightQuery (String query, List<String> topTerms, double expansionPercentage) {
+    private List weightQuery(String query, List<String> topTerms, double expansionPercentage) {
         int numberOfExpansionTerms = topTerms.size();
         int numberOfOriginalTerms = query
                 .replace("?", " ")
@@ -198,9 +202,18 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                 .replace(")", " ")
                 .replace("  ", " ").split(" ").length;
 
-        double expansionWeight = ((double) Math.round(((expansionPercentage * numberOfOriginalTerms) / (numberOfExpansionTerms * (1 - expansionPercentage))) * 100))/ 100.0;
-        List<String> listToReturn =topTerms.stream().map(term -> term +"^"+expansionWeight).collect(Collectors.toList());
+        double expansionWeight = ((double) Math.round(((expansionPercentage * numberOfOriginalTerms) / (numberOfExpansionTerms * (1 - expansionPercentage))) * 100)) / 100.0;
+        List<String> listToReturn = topTerms.stream().map(term -> term + "^" + expansionWeight).collect(Collectors.toList());
         return listToReturn;
+    }
+
+    private String removeNegativeTerms(String query, List<String> negativeTerms) {
+
+        for (String negativeTerm : negativeTerms) {
+            if (!query.isEmpty())
+                query = query.replaceAll(negativeTerm, "");
+        }
+        return query.replaceAll(" +", " ");
     }
 
     public static void main(String[] args) {
