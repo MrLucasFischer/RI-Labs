@@ -8,6 +8,7 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
+import org.apache.lucene.search.similarities.LMJelinekMercerSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.FSDirectory;
 
@@ -57,9 +58,9 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                     int numberOfDocs = 10; //Exercise 1
 
                     //Exercise 4
-                    Map<String, Integer> negTerms = getExpansionTerms(queryString, 200, 220, analyzer, similarity, null);
+                    Map<String, Integer> negTerms = getExpansionTerms(queryString, 230, 250, analyzer, similarity, null);
 
-                    List<Map.Entry<String, Integer>> topNegative = getTopTerms(negTerms, numberOfTerms);
+                    List<Map.Entry<String, Integer>> topNegative = getTopTerms(negTerms, numberOfTerms); //Get the negative terms
 
                     Map<String, Integer> posTerms = getExpansionTerms(queryString, 0, numberOfDocs, analyzer, similarity, topNegative);
 
@@ -67,24 +68,25 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
                     List<String> topTerms = topTermsAux.stream().map(Map.Entry::getKey).collect(Collectors.toList()); //Convert key, value to just key
                     if (!topTerms.isEmpty())
                         topTerms.set(0, " " + topTerms.get(0));
-                    // Implement the query expansion by selecting terms from the expansionTerms
-
-//                    queryString = removeNegativeTerms(queryString, topNegative.stream().map(Map.Entry::getKey).collect(Collectors.toList()));
-
-//                    Exercise 3
-                    topTerms = weightQuery(queryString, topTerms, 0.5); //Get a new list of keys that are weighted
 
                     //Exercise 4
+                    queryString = removeNegativeTerms(queryString, topNegative.stream().map(Map.Entry::getKey).collect(Collectors.toList()));
 
+//                   Exercise 3
+                    topTerms = weightQuery(queryString, topTerms, 0.5); //Get a new list of keys that are weighted
+
+                    //Expanding the query
                     queryString = expandQuery(queryString, topTerms);
                     Query query;
 
+                    //SECOND PASSAGE THROUGH THE INDEX
                     try {
                         query = parser.parse(queryString); //Parsing the expanded query
                     } catch (org.apache.lucene.queryparser.classic.ParseException e) {
                         System.out.println("Error parsing query string.");
                         continue;
                     }
+
 
                     TopDocs results = searcher.search(query, 100);
                     ScoreDoc[] hits = results.scoreDocs;
@@ -213,18 +215,17 @@ public class Lab5_QueryExpansion extends Lab1_Baseline {
             if (!query.isEmpty())
                 query = query.replaceAll(negativeTerm, "");
         }
-        return query.replaceAll(" +", " ");
+
+        return query.replaceAll(" +", " ").replace("?", "");
     }
 
     public static void main(String[] args) {
 
+
+        Lab2_Analyser analyzer = new Lab2_Analyser();
+
+        Similarity similarity = new LMJelinekMercerSimilarity(0.9f); //WE used this value because it has the best p10 and MAP
         Lab5_QueryExpansion baseline = new Lab5_QueryExpansion();
-
-
-        Analyzer analyzer = new StandardAnalyzer();
-        Similarity similarity = new ClassicSimilarity();
-
-        // Search the index
         baseline.indexSearchQE(analyzer, similarity);
     }
 

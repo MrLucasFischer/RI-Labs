@@ -31,7 +31,7 @@ public class Lab1_Baseline {
 
     boolean create = true;
 
-    private IndexWriter idx;
+    protected IndexWriter idx;
 
     public static void main(String[] args) {
 
@@ -209,6 +209,7 @@ public class Lab1_Baseline {
         } catch (IOException e) {
             System.out.println("Error adding document " + AnswerId);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Error parsing document " + AnswerId);
         }
     }
@@ -232,12 +233,13 @@ public class Lab1_Baseline {
             QueryParser parser = new QueryParser("Body", analyzer);
             try (BufferedReader br = new BufferedReader(new FileReader("./eval/queries.offline.txt"))) {
 
+
                 String line = br.readLine();
                 String simString = similarity.toString().replace("(", "_").replace(")", "_").replace(" ","_").replace("=", "").replaceAll("," , "_");
                 String filename = "./eval/"+simString+".txt";
                 File resultFile = new File(filename);
 
-                //File resultFile = new File("./eval/classicSim.txt");
+                //File resultFile = newSystem.out.println("QUERY: " + query); File("./eval/classicSim.txt");
                 resultFile.delete();
                 resultFile.createNewFile();
                 int counter = 0;
@@ -259,6 +261,7 @@ public class Lab1_Baseline {
 
                     try {
                         query = parser.parse(line);
+                        System.out.println("QUERY: " + query);
                     } catch (org.apache.lucene.queryparser.classic.ParseException e) {
                         System.out.println("Error parsing query string.");
                         continue;
@@ -277,7 +280,8 @@ public class Lab1_Baseline {
                          BufferedWriter bw = new BufferedWriter(fw);
                          PrintWriter out = new PrintWriter(bw)) {
                         if(counter == 0)
-                            out.println("QueryID\t\t\tQ0\t\t\tDocID\t\t\tRank\t\t\tScore\t\t\tRunID");
+//                            out.println("QueryID\t\t\tQ0\t\t\tDocID\t\t\tRank\t\t\tScore\t\t\tRunID");
+                            out.println("QueryID\t\t\tDocID\t\t\tScore");
                         for (int j = 0; j < hits.length; j++) {
                             Document doc = searcher.doc(hits[j].doc);
 
@@ -287,9 +291,13 @@ public class Lab1_Baseline {
                             //System.out.println((float)ntotterms/(float)nDocsInReader);
                             //System.out.println(ntotterms);
 
-                            String answer = doc.get("Body");
-                            Integer AnswerId = doc.getField("AnswerId").numericValue().intValue();
-                            out.println(questionID + "\t\t\tQ0\t\t\t"+ AnswerId + "\t\t\t" + (j+1) + "\t\t\t" + hits[j].score + "\t\t\trun-1");
+                            //FOR LAB6
+                            Integer answerId = doc.getField("AnswerId").numericValue().intValue();
+                            out.println(questionID + "\t\t\t" + answerId + "\t\t\t" + hits[j].score);
+
+//                            String answer = doc.get("Body");
+//                            Integer AnswerId = doc.getField("AnswerId").numericValue().intValue();
+//                            out.println(questionID + "\t\t\tQ0\t\t\t"+ AnswerId + "\t\t\t" + (j+1) + "\t\t\t" + hits[j].score + "\t\t\trun-1");
                         }
                     } catch (IOException e) {
                         //exception handling left as an exercise for the reader
