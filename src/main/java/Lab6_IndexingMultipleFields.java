@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,12 +29,13 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
         // ====================================================
         // Each document is organized as:
         // Id,OwnerUserId,CreationDate,ParentId,Score,Body
+        // Now for Lab they will also have an extra field FirstParagraph
         Integer AnswerId = 0;
         try {
 
             // Extract field Id
-            Integer start = 0;
-            Integer end = rawDocument.indexOf(',');
+            int start = 0;
+            int end = rawDocument.indexOf(',');
             String aux = rawDocument.substring(start, end);
             AnswerId = Integer.decode(aux);
 
@@ -56,24 +58,6 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
                 Date creationDate;
                 creationDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(aux);
                 doc.add(new LongPoint("CreationDate", creationDate.getTime()));
-
-                // Add decay weight field
-
-                LocalDate docDate = creationDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-                //Calculate the number of days this document has
-                Date docDate1 = Date.from(docDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                Date now = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                long diff = now.getTime() - docDate1.getTime();
-                int totalDaysElapsed = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-
-                // DECAY
-                // Implementation of the decay function
-                double decayFactor = 1.0 / Math.pow((1.0 + (1.0/(float)totalDaysElapsed)), (float)totalDaysElapsed);
-
-                // DECAY
-                //doc.add(new DoubleDocValuesField("decayField", decayFactor)); //Add the decayField to the document
-
 
             } catch (ParseException e1) {
                 System.out.println("Error parsing date for document " + AnswerId);
@@ -98,6 +82,7 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
             //String firstParagraph = body.substring() //FirstParagraph
             doc.add(new TextField("Body", body, Field.Store.YES));
 
+            doc.add(new IntPoint("Length", body.split(" ").length));
             // ====================================================
             // Add the document to the index
             if (idx.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE) {
@@ -116,15 +101,17 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
 	private static class PerFieldSimilarity extends PerFieldSimilarityWrapper {
 
         private Map<String, Similarity> similarityPerField = new HashMap<>();
+        private Similarity defaultSim;
 
 		public PerFieldSimilarity(Similarity defaultSim) {
+            this.defaultSim = defaultSim;
 			similarityPerField.put("Body", new BM25Similarity());
 //			similarityPerField.put("FirstSentence", new LMDirichletSimilarity());
 		}
 
 		@Override
 		public Similarity get(String field) {
-			return similarityPerField.get(field);
+		    return similarityPerField.getOrDefault(field, defaultSim);
 		}
 	}
 
@@ -132,25 +119,50 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
 
 		// ===================================
 		// The per field retrieval model
+
 //		Similarity similarity = new PerFieldSimilarity(new ClassicSimilarity());
-        Similarity similarity = new ClassicSimilarity();
+        Similarity similarity = new LMJelinekMercerSimilarity(0.1f);
+        ArrayList<Similarity> similarityList = new ArrayList<>();
+        similarityList.add(new ClassicSimilarity());
+        similarityList.add(new BM25Similarity());
+        similarityList.add(new BM25Similarity(1.5f, 0.75f));
+        similarityList.add(new BM25Similarity(0.5f, 0.0f));
+        similarityList.add(new BM25Similarity(1.5f, 0.0f));
+        similarityList.add(new LMJelinekMercerSimilarity(0.9f));
+        similarityList.add(new LMJelinekMercerSimilarity(0.7f));
+        similarityList.add(new LMJelinekMercerSimilarity(0.1f));
+        similarityList.add(new LMJelinekMercerSimilarity(1.0f));
+        similarityList.add(new LMJelinekMercerSimilarity(1.0f));
+        similarityList.add(new LMDirichletSimilarity(10));
+        similarityList.add(new LMDirichletSimilarity(100));
+        similarityList.add(new LMDirichletSimilarity(1000));
+        similarityList.add(new LMDirichletSimilarity(5000));
+
+
 		// ===================================
+
 		// The per field parser
 		Map<String, Analyzer> analyzerPerField = new HashMap<>();
-		analyzerPerField.put("Body", new StandardAnalyzer());
+		analyzerPerField.put("Body", new Lab2_Analyser());
 //		analyzerPerField.put("FirstParagraph", new KeywordAnalyzer());
 		Analyzer analyzer = new PerFieldAnalyzerWrapper(new StandardAnalyzer(), analyzerPerField);
 
-		// ===================================
-		// The indexing process will use the provided analyzer and retrieval model
-		Lab6_IndexingMultipleFields baseline = new Lab6_IndexingMultipleFields(); //Substitui aqui o lab1 por lab6
-		baseline.openIndex(analyzer, similarity);
-		baseline.indexDocuments();
-		baseline.close();
 
-		// ===================================
-		// The search process will use the provided analyzer and retrieval model
-		baseline.indexSearch(analyzer, similarity);
+
+		for(Similarity sim : similarityList) {
+            // ===================================
+            // The indexing process will use the provided analyzer and retrieval model
+            Lab6_IndexingMultipleFields baseline = new Lab6_IndexingMultipleFields();
+            baseline.openIndex(analyzer, sim);
+            baseline.indexDocuments();
+            baseline.close();
+
+
+            // ===================================
+            // The search process will use the provided analyzer and retrieval model
+            baseline.indexSearch(analyzer, sim);
+        }
 	}
+	//TODO perguntar ao prof sobre o Length
 
 }

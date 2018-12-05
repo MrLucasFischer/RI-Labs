@@ -261,7 +261,6 @@ public class Lab1_Baseline {
 
                     try {
                         query = parser.parse(line);
-                        System.out.println("QUERY: " + query);
                     } catch (org.apache.lucene.queryparser.classic.ParseException e) {
                         System.out.println("Error parsing query string.");
                         continue;
