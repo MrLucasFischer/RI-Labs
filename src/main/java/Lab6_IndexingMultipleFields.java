@@ -21,8 +21,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
 
-	@Override
-	public void indexDoc(String rawDocument) {
+    @Override
+    public void indexDoc(String rawDocument) {
 
         Document doc = new Document();
 
@@ -79,10 +79,15 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
 
             // Extract field Body
             String body = rawDocument.substring(end + 1);
-            //String firstParagraph = body.substring() //FirstParagraph
             doc.add(new TextField("Body", body, Field.Store.YES));
 
+            // Extracting length of document
             doc.add(new IntPoint("Length", body.split(" ").length));
+
+            // Extracting the first sentence of a document
+            doc.add(new TextField("First Sentence", getFirstSentence(body), Field.Store.YES));
+
+
             // ====================================================
             // Add the document to the index
             if (idx.getConfig().getOpenMode() == IndexWriterConfig.OpenMode.CREATE) {
@@ -96,73 +101,70 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
         } catch (Exception e) {
             System.out.println("Error parsing document " + AnswerId);
         }
-	}
+    }
 
-	private static class PerFieldSimilarity extends PerFieldSimilarityWrapper {
+    private String getFirstSentence(String body) {
+        int periodIdx = body.indexOf(".");
+
+        if (periodIdx > -1 && (body.charAt(periodIdx + 1) == '<' || body.charAt(periodIdx + 1) == ' '))
+            return body.substring(0, periodIdx);
+        else {
+            int questionIdx = body.indexOf("?");
+            if (questionIdx > -1 && (body.charAt(questionIdx + 1) == '<' || body.charAt(questionIdx + 1) == ' '))
+                return body.substring(0, questionIdx);
+
+            else {
+                int exclamationIdx = body.indexOf("!");
+                if (exclamationIdx > -1 && (body.charAt(exclamationIdx + 1) == '<' || body.charAt(exclamationIdx + 1) == ' '))
+                    return body.substring(0, exclamationIdx);
+                else
+                    return body;
+            }
+        }
+    }
+
+    private static class PerFieldSimilarity extends PerFieldSimilarityWrapper {
 
         private Map<String, Similarity> similarityPerField = new HashMap<>();
         private Similarity defaultSim;
 
-		public PerFieldSimilarity(Similarity defaultSim) {
+        public PerFieldSimilarity(Similarity defaultSim) {
             this.defaultSim = defaultSim;
-			similarityPerField.put("Body", new BM25Similarity());
+            similarityPerField.put("Body", new BM25Similarity());
 //			similarityPerField.put("FirstSentence", new LMDirichletSimilarity());
-		}
+        }
 
-		@Override
-		public Similarity get(String field) {
-		    return similarityPerField.getOrDefault(field, defaultSim);
-		}
-	}
+        @Override
+        public Similarity get(String field) {
+            return similarityPerField.getOrDefault(field, defaultSim);
+        }
+    }
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// ===================================
-		// The per field retrieval model
+        // ===================================
+        // The per field retrieval model
 
 //		Similarity similarity = new PerFieldSimilarity(new ClassicSimilarity());
         Similarity similarity = new LMJelinekMercerSimilarity(0.1f);
-        ArrayList<Similarity> similarityList = new ArrayList<>();
-        similarityList.add(new ClassicSimilarity());
-        similarityList.add(new BM25Similarity());
-        similarityList.add(new BM25Similarity(1.5f, 0.75f));
-        similarityList.add(new BM25Similarity(0.5f, 0.0f));
-        similarityList.add(new BM25Similarity(1.5f, 0.0f));
-        similarityList.add(new LMJelinekMercerSimilarity(0.9f));
-        similarityList.add(new LMJelinekMercerSimilarity(0.7f));
-        similarityList.add(new LMJelinekMercerSimilarity(0.1f));
-        similarityList.add(new LMJelinekMercerSimilarity(1.0f));
-        similarityList.add(new LMJelinekMercerSimilarity(1.0f));
-        similarityList.add(new LMDirichletSimilarity(10));
-        similarityList.add(new LMDirichletSimilarity(100));
-        similarityList.add(new LMDirichletSimilarity(1000));
-        similarityList.add(new LMDirichletSimilarity(5000));
 
+        // ===================================
 
-		// ===================================
-
-		// The per field parser
-		Map<String, Analyzer> analyzerPerField = new HashMap<>();
-		analyzerPerField.put("Body", new Lab2_Analyser());
+        // The per field parser
+        Map<String, Analyzer> analyzerPerField = new HashMap<>();
+        analyzerPerField.put("Body", new Lab2_Analyser());
 //		analyzerPerField.put("FirstParagraph", new KeywordAnalyzer());
-		Analyzer analyzer = new PerFieldAnalyzerWrapper(new StandardAnalyzer(), analyzerPerField);
+        Analyzer analyzer = new PerFieldAnalyzerWrapper(new StandardAnalyzer(), analyzerPerField);
 
+        // ===================================
+        // The indexing process will use the provided analyzer and retrieval model
+        Lab6_IndexingMultipleFields baseline = new Lab6_IndexingMultipleFields();
+        baseline.openIndex(analyzer, similarity);
+        baseline.indexDocuments();
+        baseline.close();
 
-
-		for(Similarity sim : similarityList) {
-            // ===================================
-            // The indexing process will use the provided analyzer and retrieval model
-            Lab6_IndexingMultipleFields baseline = new Lab6_IndexingMultipleFields();
-            baseline.openIndex(analyzer, sim);
-            baseline.indexDocuments();
-            baseline.close();
-
-
-            // ===================================
-            // The search process will use the provided analyzer and retrieval model
-            baseline.indexSearch(analyzer, sim);
-        }
-	}
-	//TODO perguntar ao prof sobre o Length
-
+        // ===================================
+        // The search process will use the provided analyzer and retrieval model
+        baseline.indexSearch(analyzer, similarity);
+    }
 }
