@@ -289,12 +289,14 @@ public class Lab1_Baseline {
                             //long numTotTermFreq = searcher.collectionStatistics("Body").sumTotalTermFreq();
                             //System.out.println((float)ntotterms/(float)nDocsInReader);
                             //System.out.println(ntotterms);
+                            String answer = doc.getField("Body").stringValue();
+                            String length = doc.get("Length");
+                            String firstSentence = doc.getField("FirstSentence").stringValue();
 
                             //FOR LAB6
-                            Integer answerId = doc.getField("AnswerId").numericValue().intValue();
+                            int answerId = doc.getField("AnswerId").numericValue().intValue();
                             out.println(questionID + "\t\t\t" + answerId + "\t\t\t" + hits[j].score);
 
-//                            String answer = doc.get("Body");
 //                            Integer AnswerId = doc.getField("AnswerId").numericValue().intValue();
 //                            out.println(questionID + "\t\t\tQ0\t\t\t"+ AnswerId + "\t\t\t" + (j+1) + "\t\t\t" + hits[j].score + "\t\t\trun-1");
                         }

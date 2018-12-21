@@ -85,7 +85,7 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
             doc.add(new IntPoint("Length", body.split(" ").length));
 
             // Extracting the first sentence of a document
-            doc.add(new TextField("First Sentence", getFirstSentence(body), Field.Store.YES));
+            doc.add(new TextField("FirstSentence", getFirstSentence(body), Field.Store.YES));
 
 
             // ====================================================
@@ -130,8 +130,8 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
 
         public PerFieldSimilarity(Similarity defaultSim) {
             this.defaultSim = defaultSim;
-            similarityPerField.put("Body", new BM25Similarity());
-//			similarityPerField.put("FirstSentence", new LMDirichletSimilarity());
+            similarityPerField.put("Body", new LMJelinekMercerSimilarity(0.9f));
+			similarityPerField.put("FirstSentence", new BM25Similarity(1.2f, 0.75f));
         }
 
         @Override
@@ -145,16 +145,16 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
         // ===================================
         // The per field retrieval model
 
-//		Similarity similarity = new PerFieldSimilarity(new ClassicSimilarity());
-        Similarity similarity = new LMJelinekMercerSimilarity(0.1f);
+		Similarity similarity = new PerFieldSimilarity(new ClassicSimilarity());
+//        Similarity similarity = new LMJelinekMercerSimilarity(0.1f);
 
         // ===================================
 
         // The per field parser
         Map<String, Analyzer> analyzerPerField = new HashMap<>();
         analyzerPerField.put("Body", new Lab2_Analyser());
-//		analyzerPerField.put("FirstParagraph", new KeywordAnalyzer());
-        Analyzer analyzer = new PerFieldAnalyzerWrapper(new StandardAnalyzer(), analyzerPerField);
+		analyzerPerField.put("FirstSentence", new Lab2_Analyser());
+        Analyzer analyzer = new PerFieldAnalyzerWrapper(new Lab2_Analyser(), analyzerPerField);
 
         // ===================================
         // The indexing process will use the provided analyzer and retrieval model
