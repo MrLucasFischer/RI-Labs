@@ -4,11 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" line="147" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5764128a-62b5-4bb3-a9bc-cb33d00ed7b1" name="Default Changelist" comment="updates">
+    <list default="true" id="5764128a-62b5-4bb3-a9bc-cb33d00ed7b1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,7 +22,7 @@
     <session id="-898028723">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="64" />
+          <entry key="project.closed" value="65" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="6" />
           <entry key="project.open.time.11" value="2" />
@@ -32,10 +32,10 @@
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="7" />
-          <entry key="project.open.time.7" value="18" />
+          <entry key="project.open.time.7" value="19" />
           <entry key="project.open.time.8" value="18" />
           <entry key="project.open.time.9" value="9" />
-          <entry key="project.opened" value="66" />
+          <entry key="project.opened" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -43,16 +43,16 @@
           <entry key="class" value="3" />
           <entry key="csv" value="2" />
           <entry key="gitignore" value="78" />
-          <entry key="java" value="11783" />
-          <entry key="txt" value="496" />
+          <entry key="java" value="12482" />
+          <entry key="txt" value="519" />
           <entry key="xml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="3" />
-          <entry key="JAVA" value="11783" />
-          <entry key="PLAIN_TEXT" value="576" />
+          <entry key="JAVA" value="12482" />
+          <entry key="PLAIN_TEXT" value="599" />
           <entry key="XML" value="6" />
         </counts>
       </usages-collector>
@@ -61,16 +61,16 @@
           <entry key="class" value="50" />
           <entry key="csv" value="12" />
           <entry key="gitignore" value="3" />
-          <entry key="java" value="46" />
-          <entry key="txt" value="21" />
+          <entry key="java" value="47" />
+          <entry key="txt" value="22" />
           <entry key="xml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="50" />
-          <entry key="JAVA" value="46" />
-          <entry key="PLAIN_TEXT" value="36" />
+          <entry key="JAVA" value="47" />
+          <entry key="PLAIN_TEXT" value="37" />
           <entry key="XML" value="4" />
         </counts>
       </usages-collector>
@@ -108,33 +108,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="137" column="42" selection-start-line="137" selection-start-column="42" selection-end-line="137" selection-end-column="42" />
-              <folding>
-                <element signature="e#4373#4374#0" expanded="true" />
-                <element signature="e#4442#4443#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="420">
+              <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Lab2_Analyser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="293" column="95" selection-start-line="293" selection-start-column="95" selection-end-line="293" selection-end-column="95" />
+            <state relative-caret-position="244">
+              <caret line="302" lean-forward="true" selection-start-line="302" selection-end-line="302" />
             </state>
           </provider>
         </entry>
@@ -196,8 +183,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" />
       </list>
     </option>
   </component>
@@ -222,6 +209,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,11 +244,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545417858443" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545838701086" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
@@ -466,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545409179461</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Java code done">
+      <created>1545417873039</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1545417873039</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -482,7 +476,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49895832" visible="true" weight="0.38422132" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49895832" visible="true" weight="0.35040984" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -518,7 +512,8 @@
     <MESSAGE value="Working on lab6" />
     <MESSAGE value="updates" />
     <MESSAGE value="Implemented extraction of first sentence" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented extraction of first sentence" />
+    <MESSAGE value="Java code done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Java code done" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/eval/resultFile.txt" />
@@ -766,13 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eval/queries.offline.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -794,10 +782,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0-sources.jar!/org/apache/lucene/search/similarities/ClassicSimilarity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="293" column="95" selection-start-line="293" selection-start-column="95" selection-end-line="293" selection-end-column="95" />
+        <state relative-caret-position="392">
+          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eval/queries.offline.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="67" lean-forward="true" selection-start-column="2" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -808,21 +803,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/lucene/lucene-core/7.4.0/lucene-core-7.4.0-sources.jar!/org/apache/lucene/search/similarities/ClassicSimilarity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        <state relative-caret-position="420">
+          <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="137" column="42" selection-start-line="137" selection-start-column="42" selection-end-line="137" selection-end-column="42" />
-          <folding>
-            <element signature="e#4373#4374#0" expanded="true" />
-            <element signature="e#4442#4443#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="244">
+          <caret line="302" lean-forward="true" selection-start-line="302" selection-end-line="302" />
         </state>
       </provider>
     </entry>

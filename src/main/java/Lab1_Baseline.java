@@ -1,11 +1,9 @@
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.*;
 import org.apache.lucene.index.*;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.*;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.search.similarities.Similarity;
 import org.apache.lucene.store.Directory;
@@ -254,13 +252,18 @@ public class Lab1_Baseline {
                     }
 
                     Query query;
+                    //Aqui teriamos que por todas as queries neste array ?
+                    String[] querys = {"What are some valuable Statistical Analysis open source projects?", "query2"};
+                    String[] fields = {"Body", "FirstSentence"}; //são só dois fields right ?
+                    BooleanClause.Occur[] flags = {BooleanClause.Occur.MUST, BooleanClause.Occur.MUST};
+                    //Este flags é o que ? será a dizer que aquele field tem que existir ?
 
                     //DECAY
                     //ValueSource val = new DoubleFieldSource("decayField");
                     //FunctionQuery myFuncQuery = new FunctionQuery(val);   //Specify that the scoring should be influenced by "decayField"
 
                     try {
-                        query = parser.parse(line);
+                        query = MultiFieldQueryParser.parse(querys, fields, flags, analyzer);
                     } catch (org.apache.lucene.queryparser.classic.ParseException e) {
                         System.out.println("Error parsing query string.");
                         continue;
@@ -292,13 +295,14 @@ public class Lab1_Baseline {
                             String answer = doc.getField("Body").stringValue();
                             String length = doc.get("Length");
                             String firstSentence = doc.getField("FirstSentence").stringValue();
+                            System.out.println(searcher.explain(query, hits[j].doc));
 
                             //FOR LAB6
                             int answerId = doc.getField("AnswerId").numericValue().intValue();
-                            out.println(questionID + "\t\t\t" + answerId + "\t\t\t" + hits[j].score);
+//                            out.println(questionID + "\t\t\t" + answerId + "\t\t\t" + hits[j].score);
 
 //                            Integer AnswerId = doc.getField("AnswerId").numericValue().intValue();
-//                            out.println(questionID + "\t\t\tQ0\t\t\t"+ AnswerId + "\t\t\t" + (j+1) + "\t\t\t" + hits[j].score + "\t\t\trun-1");
+                            out.println(questionID + "\t\t\tQ0\t\t\t"+ answerId + "\t\t\t" + (j+1) + "\t\t\t" + hits[j].score + "\t\t\trun-1");
                         }
                     } catch (IOException e) {
                         //exception handling left as an exercise for the reader

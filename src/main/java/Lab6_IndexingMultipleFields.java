@@ -131,7 +131,7 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
         public PerFieldSimilarity(Similarity defaultSim) {
             this.defaultSim = defaultSim;
             similarityPerField.put("Body", new LMJelinekMercerSimilarity(0.9f));
-			similarityPerField.put("FirstSentence", new BM25Similarity(1.2f, 0.75f));
+            similarityPerField.put("FirstSentence", new BM25Similarity(1.2f, 0.75f));
         }
 
         @Override
@@ -145,15 +145,15 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
         // ===================================
         // The per field retrieval model
 
-		Similarity similarity = new PerFieldSimilarity(new ClassicSimilarity());
+        Similarity similarity = new PerFieldSimilarity(new LMDirichletSimilarity());
 //        Similarity similarity = new LMJelinekMercerSimilarity(0.1f);
 
-        // ===================================
+//         ===================================
 
-        // The per field parser
+//         The per field parser
         Map<String, Analyzer> analyzerPerField = new HashMap<>();
         analyzerPerField.put("Body", new Lab2_Analyser());
-		analyzerPerField.put("FirstSentence", new Lab2_Analyser());
+        analyzerPerField.put("FirstSentence", new Lab2_Analyser());
         Analyzer analyzer = new PerFieldAnalyzerWrapper(new Lab2_Analyser(), analyzerPerField);
 
         // ===================================
