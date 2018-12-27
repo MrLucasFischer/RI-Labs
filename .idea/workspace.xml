@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" line="147" mnemonic="0" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" line="152" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5764128a-62b5-4bb3-a9bc-cb33d00ed7b1" name="Default Changelist" comment="">
@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab1_Baseline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Lab6_IndexingMultipleFields.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,7 +23,7 @@
     <session id="-898028723">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="65" />
+          <entry key="project.closed" value="66" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="6" />
           <entry key="project.open.time.11" value="2" />
@@ -34,8 +35,8 @@
           <entry key="project.open.time.6" value="7" />
           <entry key="project.open.time.7" value="19" />
           <entry key="project.open.time.8" value="18" />
-          <entry key="project.open.time.9" value="9" />
-          <entry key="project.opened" value="67" />
+          <entry key="project.open.time.9" value="10" />
+          <entry key="project.opened" value="68" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -43,16 +44,16 @@
           <entry key="class" value="3" />
           <entry key="csv" value="2" />
           <entry key="gitignore" value="78" />
-          <entry key="java" value="12482" />
-          <entry key="txt" value="519" />
+          <entry key="java" value="12867" />
+          <entry key="txt" value="525" />
           <entry key="xml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="3" />
-          <entry key="JAVA" value="12482" />
-          <entry key="PLAIN_TEXT" value="599" />
+          <entry key="JAVA" value="12867" />
+          <entry key="PLAIN_TEXT" value="605" />
           <entry key="XML" value="6" />
         </counts>
       </usages-collector>
@@ -108,20 +109,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
+            <state relative-caret-position="488">
+              <caret line="134" column="9" lean-forward="true" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="302" lean-forward="true" selection-start-line="302" selection-end-line="302" />
+            <state relative-caret-position="7336">
+              <caret line="285" column="68" selection-start-line="285" selection-start-column="68" selection-end-line="285" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -183,8 +184,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Lab4_RetrievalModels.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab5_QueryExpansion.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" />
         <option value="$PROJECT_DIR$/src/main/java/Lab1_Baseline.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java" />
       </list>
     </option>
   </component>
@@ -247,7 +248,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545838701086" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545841578821" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
@@ -460,7 +461,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545417873039</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update">
+      <created>1545838722297</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1545838722297</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -476,7 +484,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49895832" visible="true" weight="0.35040984" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49895832" weight="0.20799181" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -513,7 +521,8 @@
     <MESSAGE value="updates" />
     <MESSAGE value="Implemented extraction of first sentence" />
     <MESSAGE value="Java code done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Java code done" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/eval/resultFile.txt" />
@@ -805,15 +814,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Lab6_IndexingMultipleFields.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
+        <state relative-caret-position="488">
+          <caret line="134" column="9" lean-forward="true" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Lab1_Baseline.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="302" lean-forward="true" selection-start-line="302" selection-end-line="302" />
+        <state relative-caret-position="7336">
+          <caret line="285" column="68" selection-start-line="285" selection-start-column="68" selection-end-line="285" selection-end-column="68" />
         </state>
       </provider>
     </entry>

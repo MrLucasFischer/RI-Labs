@@ -253,17 +253,17 @@ public class Lab1_Baseline {
 
                     Query query;
                     //Aqui teriamos que por todas as queries neste array ?
-                    String[] querys = {"What are some valuable Statistical Analysis open source projects?", "query2"};
+//                    String[] querys = {"What are some valuable Statistical Analysis open source projects?", "query2"};
                     String[] fields = {"Body", "FirstSentence"}; //são só dois fields right ?
-                    BooleanClause.Occur[] flags = {BooleanClause.Occur.MUST, BooleanClause.Occur.MUST};
+//                    BooleanClause.Occur[] flags = {BooleanClause.Occur.MUST, BooleanClause.Occur.MUST};
                     //Este flags é o que ? será a dizer que aquele field tem que existir ?
-
+                    MultiFieldQueryParser queryParser = new MultiFieldQueryParser(fields, analyzer);
                     //DECAY
                     //ValueSource val = new DoubleFieldSource("decayField");
                     //FunctionQuery myFuncQuery = new FunctionQuery(val);   //Specify that the scoring should be influenced by "decayField"
 
                     try {
-                        query = MultiFieldQueryParser.parse(querys, fields, flags, analyzer);
+                        query = queryParser.parse(line);
                     } catch (org.apache.lucene.queryparser.classic.ParseException e) {
                         System.out.println("Error parsing query string.");
                         continue;
@@ -282,8 +282,8 @@ public class Lab1_Baseline {
                          BufferedWriter bw = new BufferedWriter(fw);
                          PrintWriter out = new PrintWriter(bw)) {
                         if(counter == 0)
-//                            out.println("QueryID\t\t\tQ0\t\t\tDocID\t\t\tRank\t\t\tScore\t\t\tRunID");
-                            out.println("QueryID\t\t\tDocID\t\t\tScore");
+                            out.println("QueryID\t\t\tQ0\t\t\tDocID\t\t\tRank\t\t\tScore\t\t\tRunID");
+//                            out.println("QueryID\t\t\tDocID\t\t\tScore");
                         for (int j = 0; j < hits.length; j++) {
                             Document doc = searcher.doc(hits[j].doc);
 
@@ -295,7 +295,7 @@ public class Lab1_Baseline {
                             String answer = doc.getField("Body").stringValue();
                             String length = doc.get("Length");
                             String firstSentence = doc.getField("FirstSentence").stringValue();
-                            System.out.println(searcher.explain(query, hits[j].doc));
+//                            System.out.println(searcher.explain(query, hits[j].doc));
 
                             //FOR LAB6
                             int answerId = doc.getField("AnswerId").numericValue().intValue();

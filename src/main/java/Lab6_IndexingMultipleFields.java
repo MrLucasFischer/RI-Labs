@@ -131,7 +131,7 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
         public PerFieldSimilarity(Similarity defaultSim) {
             this.defaultSim = defaultSim;
             similarityPerField.put("Body", new LMJelinekMercerSimilarity(0.9f));
-            similarityPerField.put("FirstSentence", new BM25Similarity(1.2f, 0.75f));
+			similarityPerField.put("FirstSentence", new BM25Similarity(1.2f, 0.75f));
         }
 
         @Override
@@ -139,25 +139,30 @@ public class Lab6_IndexingMultipleFields extends Lab1_Baseline {
             return similarityPerField.getOrDefault(field, defaultSim);
         }
     }
+//
+//    BM25Similarity(0.5f, 0.0f)
+//        LMDirichletSimilarity(1000)
+//            LMJelinekMercerSimilarity(0.9f)
+//                ClassicSimilarity()
 
     public static void main(String[] args) {
 
         // ===================================
         // The per field retrieval model
 
-        Similarity similarity = new PerFieldSimilarity(new LMDirichletSimilarity());
+        Similarity similarity = new PerFieldSimilarity(new ClassicSimilarity());
 //        Similarity similarity = new LMJelinekMercerSimilarity(0.1f);
 
-//         ===================================
-
+////         ===================================
+//
 //         The per field parser
         Map<String, Analyzer> analyzerPerField = new HashMap<>();
         analyzerPerField.put("Body", new Lab2_Analyser());
-        analyzerPerField.put("FirstSentence", new Lab2_Analyser());
+		analyzerPerField.put("FirstSentence", new Lab2_Analyser());
         Analyzer analyzer = new PerFieldAnalyzerWrapper(new Lab2_Analyser(), analyzerPerField);
 
-        // ===================================
-        // The indexing process will use the provided analyzer and retrieval model
+//        // ===================================
+//        // The indexing process will use the provided analyzer and retrieval model
         Lab6_IndexingMultipleFields baseline = new Lab6_IndexingMultipleFields();
         baseline.openIndex(analyzer, similarity);
         baseline.indexDocuments();
